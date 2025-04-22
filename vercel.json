@@ -8,8 +8,8 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1.js"
+      "src": "/api/swiggy(.*)",
+      "dest": "/api/swiggy$1.js"
     }
   ]
 }
