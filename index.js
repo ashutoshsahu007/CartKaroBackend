@@ -6,7 +6,7 @@ const PORT = 3001;
 
 app.use(cors());
 
-app.get("/", (res, res) => {
+app.get("/", (req, res) => {
   res.json({ messgae: "hello" });
 });
 
