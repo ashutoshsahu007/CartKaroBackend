@@ -1,0 +1,21 @@
+{
+  "name": "swiggy-api",
+  "version": "1.0.0",
+  "description": "swiggy-api for personal project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "Abhishek Ranjan",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "node": "^23.11.0",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.9"
+  }
+}
