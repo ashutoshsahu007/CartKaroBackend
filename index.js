@@ -6,9 +6,9 @@ const PORT = 3001;
 
 app.use(cors());
 
-// app.get("/", (req, res) => {
-//   res.json({ messgae: "hello" });
-// });
+app.get("/", (req, res) => {
+  res.json({ messgae: "hello" });
+});
 
 app.get("/api/swiggy", async (req, res) => {
   try {
