@@ -2,7 +2,6 @@ import express from "express";
 import fetch from "node-fetch"; // Ensure you have node-fetch installed
 import cors from "cors"; // Ensure you have cors installed
 const app = express();
-const PORT = 3001;
 
 app.use(cors());
 
@@ -18,14 +17,9 @@ app.get("/", async (req, res) => {
       },
     });
     const data = await response.json();
-    console.log(typeof data);
     res.json(data);
   } catch (err) {
     console.log("Error fetching data from Swiggy:", err);
     res.status(500).json({ error: "Something went wrong" });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Proxy running at http://localhost:${PORT}`);
 });
