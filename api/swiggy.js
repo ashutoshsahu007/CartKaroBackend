@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       },
     });
     const data = await response.json();
-    res.status(200).json(data);
+    res.json(data);
   } catch (err) {
     console.error("Error:", err);
     res.status(500).json({ error: "Something went wrong" });
