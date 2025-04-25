@@ -1,8 +1,10 @@
 import express from "express";
 import fetch from "node-fetch"; // Ensure you have node-fetch installed
-// Ensure you have cors installed
+import cors from "cors"; // Ensure you have cors installed
 const app = express();
 const PORT = 3001;
+
+app.use(cors());
 
 app.get("/", async (req, res) => {
   try {
