@@ -38,7 +38,6 @@ app.get("/api/swiggy", async (req, res) => {
       },
     });
     const data = await response.json();
-    console.log(typeof data);
     res.json(data);
   } catch (err) {
     console.log("Error fetching data from Swiggy:", err);
@@ -46,13 +45,15 @@ app.get("/api/swiggy", async (req, res) => {
   }
 });
 
-// app.get("/:resId", async (req, res) => {
+app.listen(PORT, () => {
+  console.log(`Proxy running at http://localhost:${PORT}`);
+});
+
+// app.get("/menu", async (req, res) => {
 //   try {
-//     const resId = req.params.resId;
-
-//     const url = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=${resId}`;
-
-//     const response = await fetch(url, {
+//     const swiggyURL =
+//       "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=";
+//     const response = await fetch(swiggyURL, {
 //       headers: {
 //         "User-Agent":
 //           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
@@ -60,7 +61,6 @@ app.get("/api/swiggy", async (req, res) => {
 //       },
 //     });
 //     const data = await response.json();
-
 //     res.json(data);
 //   } catch (err) {
 //     console.log("Error fetching data from Swiggy:", err);
@@ -68,6 +68,25 @@ app.get("/api/swiggy", async (req, res) => {
 //   }
 // });
 
-app.listen(PORT, () => {
-  console.log(`Proxy running at http://localhost:${PORT}`);
+app.get("/menu", async (req, res) => {
+  const { restaurantId } = req.query;
+  if (!restaurantId) {
+    return res.status(400).json({ error: "restaurantId is required" });
+  }
+
+  try {
+    const swiggyURL = `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9715987&lng=77.5945627&restaurantId=${restaurantId}`;
+    const response = await fetch(swiggyURL, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+        Accept: "application/json",
+      },
+    });
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.log("Error fetching data from Swiggy:", err);
+    res.status(500).json({ error: "Something went wrong" });
+  }
 });
