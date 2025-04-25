@@ -2,18 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.js",
+      "src": "api/**/*.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/$1.js"
+      "src": "/api/swiggy",
+      "dest": "/api/swiggy.js"
     },
     {
-      "src": "/api/swiggy",
-      "dest": "api/swiggy.js"
+      "src": "/menu",
+      "dest": "/api/menu.js"
+    },
+    {
+      "src": "/",
+      "dest": "/api/index.js"
     }
   ]
 }
